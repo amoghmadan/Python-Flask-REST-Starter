@@ -1,0 +1,8 @@
+.idea/
+.vscode/
+venv/
+*.py[cdo]
+**logs
+**__pycache__/
+**migrations/
+**sqlite3.db
