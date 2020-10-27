@@ -7,8 +7,8 @@ class RootController(views.MethodView):
     def get(self, *args, **kwargs):
         """."""
 
-        data: dict = {'hello': 'World!'}
+        data: dict = {"hello": "World!"}
 
-        current_app.logger.info(f'API Response: {data}')
+        current_app.logger.info(f"API Response: {data}")
 
         return jsonify(data), 200

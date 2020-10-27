@@ -1,7 +1,7 @@
 from marshmallow import fields
 
 from models import Person
-from utils.database import ma
+from application.serializers import ma
 
 
 class PersonSerializer(ma.SQLAlchemyAutoSchema):

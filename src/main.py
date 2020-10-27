@@ -1,15 +1,14 @@
 import sys
-from app import Application
+from application import singleton_application
 
-app = Application.get_instance(__name__)
+app = singleton_application()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """."""
 
     try:
-        app.run(host=app.config['HOST'], port=app.config['PORT'])
-
+        app.run(host=app.config["HOST"], port=app.config["PORT"])
     except Exception as exc:
         tc, te, tb = sys.exc_info()
-        print('Class: {} | Exception: {} | Line Number: {} | File: {}'.format(tc, exc, tb.tb_lineno, __name__))
+        print(f"Class: {tc.__name__} | Exception: {exc} | Line Number: {tb.tb_lineno} | File: {__name__}")

@@ -3,7 +3,7 @@ from marshmallow.exceptions import ValidationError
 
 from models import Person
 from serializers import PersonSerializer
-from utils.database import db
+from application.database import db
 
 
 class PersonController(views.MethodView):
@@ -36,7 +36,7 @@ class PersonIdController(views.MethodView):
     def get(self, *args, **kwargs):
         """."""
 
-        id = kwargs.get('id')
+        id = kwargs.get("id")
         queryset: Person = Person.query.get(id)
         serializer: PersonSerializer = PersonSerializer()
         return jsonify(serializer.dump(queryset)), 200
@@ -45,7 +45,7 @@ class PersonIdController(views.MethodView):
         """."""
 
         try:
-            id = kwargs.get('id')
+            id = kwargs.get("id")
             queryset: Person = Person.query.get(id)
             serializer: PersonSerializer = PersonSerializer()
             serializer.load(request.json, instance=queryset, partial=True)
@@ -58,7 +58,7 @@ class PersonIdController(views.MethodView):
     def delete(self, *args, **kwargs):
         """."""
 
-        id = kwargs.get('id')
+        id = kwargs.get("id")
         serializer: PersonSerializer = PersonSerializer()
         queryset: Person = Person.query.get(id)
         Person.query.filter_by(id=id).delete()
