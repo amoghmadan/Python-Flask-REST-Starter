@@ -1,3 +1,5 @@
+import logging
+
 from flask import Flask
 from flask_cors import CORS
 from flask.logging import default_handler
@@ -30,6 +32,7 @@ class Application(metaclass=SingletonMeta):
 
         if settings.ENV == 'production':
             self.app.logger.removeHandler(default_handler)
+            self.app.logger.setLevel(logging.DEBUG)
             self.app.logger.addHandler(settings.LOGGING_HANDLER)
 
         CORS(self.app)

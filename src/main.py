@@ -1,6 +1,7 @@
 import sys
-from application import singleton_application
+from application import Application
 
+singleton_application = Application(__name__)
 app = singleton_application()
 
 

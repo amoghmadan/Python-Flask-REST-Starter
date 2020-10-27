@@ -1,7 +1,7 @@
 import os
-import logging
 import configparser
 from contextlib import suppress
+from logging import Formatter
 from logging.handlers import TimedRotatingFileHandler
 
 ENV: str = os.environ.get("ENV", "development")
@@ -24,11 +24,10 @@ SQLALCHEMY_TRACK_MODIFICATIONS: bool = CONFIG.getboolean(
     "DEFAULT", "SQLALCHEMY_TRACK_MODIFICATIONS"
 )
 
-FORMATTER: logging.Formatter = logging.Formatter(
+FORMATTER: Formatter = Formatter(
     "%(asctime)s  %(levelname)s  %(process)d  %(pathname)s  %(funcName)s  %(lineno)d  %(message)s"
 )
 LOGGING_HANDLER: TimedRotatingFileHandler = TimedRotatingFileHandler(
     LOG_FILE, interval=1, when="midnight", backupCount=7
 )
-LOGGING_HANDLER.setLevel(logging.DEBUG)
 LOGGING_HANDLER.setFormatter(FORMATTER)
