@@ -1,4 +1,7 @@
-from .root import root
-from .person import person
+from .api import api
 
-url_prefix_x_blueprint: dict = {"/api/root": root, "/api/person": person}
+routes = [
+    ("/api", api),
+]
+
+__all__ = ["routes"]

@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python_flask_rest_starter"
+version = "0.1.0"
+description = "A starter project for a REST API using Flask"
+readme = "README.md"
+authors = [{ name = "Amogh Madan", email = "amoghmadaan@gmail.com" }]
+license = { file = "LICENSE" }
+requires-python = ">=3.12.0,<3.14"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Flask",
+    "Framework :: Flask :: 2.0",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: WSGI",
+]
+dependencies = [
+    "blinker==1.7.0",
+    "click==8.1.7",
+    "colorama==0.4.6",
+    "Flask==3.0.2",
+    "flask-marshmallow==1.2.0",
+    "Flask-SQLAlchemy==3.1.1",
+    "greenlet==3.0.3",
+    "itsdangerous==2.1.2",
+    "Jinja2==3.1.3",
+    "MarkupSafe==2.1.5",
+    "marshmallow==3.21.0",
+    "marshmallow-sqlalchemy==1.0.0",
+    "packaging==23.2",
+    "SQLAlchemy==2.0.27",
+    "typing_extensions==4.10.0",
+    "Werkzeug==3.0.1",
+]
+
+[project.optional-dependencies]
+all = ["gunicorn==21.2.0"]
+development = []
+production = ["gunicorn==21.2.0"]
+
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 88
+extend-exclude = '''
+^.*\b(migrations)\b.*$
+'''
+
+
+[tool.bandit]
+exclude_dirs = [
+    "./.eggs",
+    "./.git",
+    "./.tox",
+    "./build",
+    "./coverage",
+    "./dist",
+    "./venv",
+    "./__pycache__",
+    "*tests*",
+]
+
+
+[tool.mypy]
+exclude = '''
+^.*\b(migrations)\b.*$
+'''
+ignore_missing_imports = true
