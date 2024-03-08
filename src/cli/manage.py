@@ -42,7 +42,12 @@ def createsuperuser():
     confirm_password = getpass("Confirm password: ")
     if password != confirm_password:
         raise Exception("Both the passwords should match.")
-    data = {"email": email, "first_name": first_name, "last_name": last_name, "is_admin": True}
+    data = {
+        "email": email,
+        "first_name": first_name,
+        "last_name": last_name,
+        "is_admin": True,
+    }
     schema = UserSchema()
     try:
         user = schema.load(data)
