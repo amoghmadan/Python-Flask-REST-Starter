@@ -47,8 +47,29 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-all = ["gunicorn==21.2.0"]
-development = []
+all = [
+    "cachetools==5.3.3",
+    "chardet==5.2.0",
+    "distlib==0.3.8",
+    "filelock==3.13.1",
+    "gunicorn==21.2.0",
+    "platformdirs==4.2.0",
+    "pluggy==1.4.0",
+    "pyproject-api==1.6.1",
+    "tox==4.14.1",
+    "virtualenv==20.25.1",
+]
+development = [
+    "cachetools==5.3.3",
+    "chardet==5.2.0",
+    "distlib==0.3.8",
+    "filelock==3.13.1",
+    "platformdirs==4.2.0",
+    "pluggy==1.4.0",
+    "pyproject-api==1.6.1",
+    "tox==4.14.1",
+    "virtualenv==20.25.1",
+]
 production = ["gunicorn==21.2.0"]
 
 
