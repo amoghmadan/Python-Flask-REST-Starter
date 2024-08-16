@@ -1,6 +1,6 @@
 import unittest
 
-from wsgi import application
+from app.wsgi import application
 
 
 class TestCase(unittest.TestCase):

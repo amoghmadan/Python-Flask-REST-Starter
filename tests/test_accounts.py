@@ -1,12 +1,12 @@
 from http import HTTPStatus
 import json
 
-from models import Token, User
-from utils import db
+from app.models import Token, User
+from app.ext import db
 
 from tests.base import TestCase
 
-ROOT_URL = "/api/accounts"
+ROOT_URL = "/api/v1/accounts"
 
 
 class TestAccountLoginAPI(TestCase):

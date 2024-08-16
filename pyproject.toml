@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools", "setuptools_scm", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "python_flask_rest_starter"
-version = "0.1.0"
+name = "app"
+dynamic = ["version"]
 description = "A starter project for a REST API using Flask"
 readme = "README.md"
 authors = [{ name = "Amogh Madan", email = "amoghmadaan@gmail.com" }]
@@ -14,7 +14,7 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Web Environment",
     "Framework :: Flask",
-    "Framework :: Flask :: 2.0",
+    "Framework :: Flask :: 3.0",
     "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Operating System :: OS Independent",
@@ -28,64 +28,84 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP :: WSGI",
 ]
 dependencies = [
-    "blinker==1.7.0",
+    "alembic==1.13.2",
+    "blinker==1.8.2",
     "click==8.1.7",
-    "colorama==0.4.6",
-    "Flask==3.0.2",
-    "flask-marshmallow==1.2.0",
+    "Flask==3.0.3",
+    "flask-marshmallow==1.2.1",
+    "Flask-Migrate==4.0.7",
     "Flask-SQLAlchemy==3.1.1",
-    "greenlet==3.0.3",
-    "itsdangerous==2.1.2",
-    "Jinja2==3.1.3",
+    "itsdangerous==2.2.0",
+    "Jinja2==3.1.4",
+    "Mako==1.3.5",
     "MarkupSafe==2.1.5",
-    "marshmallow==3.21.0",
+    "marshmallow==3.21.3",
     "marshmallow-sqlalchemy==1.0.0",
-    "packaging==23.2",
-    "SQLAlchemy==2.0.27",
-    "typing_extensions==4.10.0",
-    "Werkzeug==3.0.1",
+    "packaging==24.1",
+    "python-dotenv==1.0.1",
+    "SQLAlchemy==2.0.32",
+    "typing_extensions==4.12.2",
+    "Werkzeug==3.0.3",
 ]
 
 [project.optional-dependencies]
 all = [
-    "cachetools==5.3.3",
+    "cachetools==5.4.0",
     "chardet==5.2.0",
+    "colorama==0.4.6",
+    "coverage==7.6.1",
     "distlib==0.3.8",
-    "filelock==3.13.1",
-    "gunicorn==21.2.0",
-    "platformdirs==4.2.0",
-    "pluggy==1.4.0",
-    "pyproject-api==1.6.1",
-    "tox==4.14.1",
-    "virtualenv==20.25.1",
+    "filelock==3.15.4",
+    "gunicorn==23.0.0",
+    "iniconfig==2.0.0",
+    "platformdirs==4.2.2",
+    "pluggy==1.5.0",
+    "pyproject-api==1.7.1",
+    "pytest==8.3.2",
+    "tox==4.17.1",
+    "virtualenv==20.26.3",
 ]
-development = [
-    "cachetools==5.3.3",
+automation = [
+    "cachetools==5.4.0",
     "chardet==5.2.0",
+    "colorama==0.4.6",
     "distlib==0.3.8",
-    "filelock==3.13.1",
-    "platformdirs==4.2.0",
-    "pluggy==1.4.0",
-    "pyproject-api==1.6.1",
-    "tox==4.14.1",
-    "virtualenv==20.25.1",
+    "filelock==3.15.4",
+    "platformdirs==4.2.2",
+    "pluggy==1.5.0",
+    "pyproject-api==1.7.1",
+    "tox==4.17.1",
+    "virtualenv==20.26.3",
 ]
-production = ["gunicorn==21.2.0"]
+deployment = ["gunicorn==23.0.0"]
+test = [
+    "coverage==7.6.1",
+    "iniconfig==2.0.0",
+    "pytest==8.3.2",
+]
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+
+[tool.setuptools_scm]
+version_file = "src/app/__version__.py"
+local_scheme = "no-local-version"
+
+
+[tool.coverage.run]
+concurrency = ["threading"]
+omit = ["tests/*", "venv/*", "__version__.py"]
 
 
 [tool.isort]
 profile = "black"
+skip_glob = ["**/migrations"]
 
 [tool.black]
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-ensure_newline_before_comments = true
-line_length = 88
-extend-exclude = '''
-^.*\b(migrations)\b.*$
-'''
+line-length = 88
+extend-exclude = "migrations/*"
 
 
 [tool.bandit]
@@ -103,7 +123,7 @@ exclude_dirs = [
 
 
 [tool.mypy]
-exclude = '''
+exclude = """
 ^.*\b(migrations)\b.*$
-'''
+"""
 ignore_missing_imports = true
