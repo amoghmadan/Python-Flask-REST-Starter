@@ -2,40 +2,52 @@
 
 Kick-starter to your REST application.
 
-## Setup Project
+## How to setup project for development?
 
 - Create a virtual environment: -
   ```bash
   python -m venv venv
   ```
-- Activte: -
-  - Windows: `venv\Scripts\activate`
-  - Unix-like: `. venv\bin\activate`
-- Run: -
+- Activate: -
+    - Windows: `venv\Scripts\activate`
+    - Unix-like: `. venv\bin\activate`
+- Install dependencies: -
   ```bash
-  pip install .
+  pip install . -e '.[all]'
   ```
-
-## Run project (in development mode)
-
-- Activte: -
-  - Windows: `venv\Scripts\activate`
-  - Unix-like: `. venv\bin\activate`
-- Change directory: -
-  ```bash
-  cd src
-  ```
+- Set environment variable: -
+    - Windows: `SET FLASK_APP=app.wsgi`
+    - Unix-like: `export FLASK_APP=app.wsgi`
 - Create a new user: -
   ```bash
-  flask run createsuperuser
+  flask manage createsuperuser
   ```
 - Run: -
   ```bash
-  python wsgi.py
+  flask run --debug
   ```
 
-## How to run in production?
+## How to setup project for deployment?
 
-```bash
-gunicorn -b 0.0.0.0:8000 --chdir=src -w 4 -t 10 wsgi:application
-```
+- Create a virtual environment: -
+  ```bash
+  python -m venv venv
+  ```
+- Activate: -
+    - Windows: `venv\Scripts\activate`
+    - Unix-like: `. venv\bin\activate`
+- Install dependencies: -
+  ```bash
+  pip install -e '.[deployment]'
+  ```
+- Set environment variable: -
+    - Windows: `SET FLASK_APP=app.wsgi`
+    - Unix-like: `export FLASK_APP=app.wsgi`
+- Create a new user: -
+  ```bash
+  flask manage createsuperuser
+  ```
+- Run: -
+  ```bash
+  gunicorn -b 0.0.0.0:8000 app.wsgi:application -w 4 -t 9
+  ```
