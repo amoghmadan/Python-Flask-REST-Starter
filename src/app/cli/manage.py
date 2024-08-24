@@ -22,22 +22,19 @@ def changepassword(email):
     confirm_password = getpass("Confirm password: ")
     if password != confirm_password:
         raise Exception("Both the passwords should match.")
-    try:
-        user.set_password(password)
-        db.session.add(user)
-        db.session.commit()
-    except ValidationError as e:
-        raise Exception(e.messages)
+    user.set_password(password)
+    db.session.add(user)
+    db.session.commit()
 
 
 @manage.cli.command("createsuperuser")
 def createsuperuser():
     """Create a user for the application."""
-    email = input("Email: ")
+    email = click.prompt("Email")
     if User.query.filter_by(email=email).first():
         raise Exception("User with this email already exists.")
-    first_name = input("First name: ")
-    last_name = input("Last name: ")
+    first_name = click.prompt("First name")
+    last_name = click.prompt("Last name")
     password = getpass("Password: ")
     confirm_password = getpass("Confirm password: ")
     if password != confirm_password:

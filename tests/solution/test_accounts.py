@@ -13,7 +13,7 @@ class TestAccountLoginAPI(TestCase):
     """Test Account API"""
 
     email = "test.login@foo.com"
-    password = "password"
+    password = "bar"
 
     def setUp(self):
         self.user = User(
@@ -35,6 +35,12 @@ class TestAccountLoginAPI(TestCase):
         response = self.client.post(
             f"{ROOT_URL}/login", data=data, headers=self.headers
         )
+        assert response.status_code == HTTPStatus.BAD_REQUEST
+
+    def test_bad__request(self):
+        data = json.dumps({"email": self.email, "password": self.password})
+        headers = {"Content-Type": "application/json", "Authorization": "Token foo"}
+        response = self.client.post(f"{ROOT_URL}/login", data=data, headers=headers)
         assert response.status_code == HTTPStatus.BAD_REQUEST
 
     def test_login_bad_credentials(self):
@@ -86,6 +92,11 @@ class TestAccountAuthAPI(TestCase):
 
     def test_no_auth_headers(self):
         headers = {"Content-Type": "application/json"}
+        response = self.client.get(f"{ROOT_URL}/detail", headers=headers)
+        assert response.status_code == HTTPStatus.UNAUTHORIZED
+
+    def test_bad_keyword(self):
+        headers = {"Content-Type": "application/json", "Authorization": "Random foo"}
         response = self.client.get(f"{ROOT_URL}/detail", headers=headers)
         assert response.status_code == HTTPStatus.UNAUTHORIZED
 
