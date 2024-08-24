@@ -2,7 +2,16 @@
 
 Kick-starter to your REST application.
 
-## How to setup project for development?
+## How to set up environment variables?
+
+- Fill the .env file with the following values, they might need adjustment.
+  ```dotenv
+  DEBUG=<BOOLEAN>                   # Dev: True
+  SECRET_KEY=<TOKEN>                # Dev: a1b2c3d4e5f6g7h8i9j10k11l12m13n14o15p16q
+  SQLALCHEMY_DATABASE_URI=<SQLITE>  # Dev: sqlite:///db.sqlite3
+  ```
+
+## How to set up project for development?
 
 - Create a virtual environment: -
   ```bash
@@ -27,7 +36,7 @@ Kick-starter to your REST application.
   flask run --debug
   ```
 
-## How to setup project for deployment?
+## How to set up project for deployment?
 
 - Create a virtual environment: -
   ```bash
