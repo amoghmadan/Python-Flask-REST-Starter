@@ -15,7 +15,7 @@ class Token(db.Model):
     """Model: Token"""
 
     key = db.Column(db.String(40), default=generate_key, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), unique=True)
     created = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
