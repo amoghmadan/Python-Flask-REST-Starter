@@ -45,7 +45,7 @@ dependencies = [
     "python-dotenv==1.0.1",
     "SQLAlchemy==2.0.32",
     "typing_extensions==4.12.2",
-    "Werkzeug==3.0.3",
+    "Werkzeug==3.1.5",
 ]
 
 [project.optional-dependencies]
